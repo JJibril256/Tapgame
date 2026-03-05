@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TapCoin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{background:#0f172a;color:white;font-family:Arial;text-align:center;}
+#coin{font-size:120px;cursor:pointer;transition:0.1s;}
+#coin:active{transform:scale(0.9);}
+.panel{margin-top:20px;font-size:22px;}
+button{padding:12px;border-radius:10px;font-size:16px;margin:10px;}
+</style>
+</head>
+<body>
+<h1>TapCoin</h1>
+<div class="panel">Balance: <span id="coins">0</span></div>
+<div id="coin">🪙</div>
+<button onclick="invite()">Invite Friends</button>
+<script>
+let coins = 0
+let user = Math.floor(Math.random()*1000000)
+function updateUI(){document.getElementById("coins").innerText = coins}
+function tap(){
+fetch("/tap",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({user:user})})
+.then(r=>r.json())
+.then(data=>{coins = data.coins; updateUI()})
+}
+document.getElementById("coin").onclick = tap
+function invite(){
+let link = "https://t.me/Clickllandbot?start=" + user
+navigator.clipboard.writeText(link)
+alert("Invite link copied!")
+}
+updateUI()
+</script>
+</body>
+</html>
