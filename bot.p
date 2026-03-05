@@ -1,13 +1,10 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
 # -------------------------------
-# Your live Web App URL
+# EDIT THIS: Your live Web App URL
 GAME_URL = "https://tapcoin-tkwt.onrender.com"
 # -------------------------------
-
-# Replace with your actual Telegram bot token
-TOKEN = "6863988188:AAF3t05x1zqZ69Vt0WG9y5FRl-jo5z6Cjvs"
 
 # Inline button for the Web App
 def get_game_button():
@@ -26,6 +23,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # Set up the bot
 if __name__ == "__main__":
+    TOKEN = "YOUR_TELEGRAM_BOT_TOKEN_HERE"  # <-- Replace with your bot token
     app = ApplicationBuilder().token(TOKEN).build()
 
     # Handlers
@@ -33,3 +31,4 @@ if __name__ == "__main__":
 
     print("Bot is running... Press CTRL+C to stop")
     app.run_polling()
+``
